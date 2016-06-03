@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片居中的方法</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,target-densitydpi=high-dpi,minimal-ui "/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="blank"/>
+    <style>
+        /*利用display:table-cell实现图片居中,font-size 兼容ie6+/FF/Chrome 优点：不添加任何多余标签，兼容主流浏览器*/
+        .box-1{ display:table;}
+        .img-wrap-1{ display:table-cell; width:200px; height:200px; border:1px solid #ccc; text-align:center;*display:block; *font-size:178px; zoom:1; vertical-align:middle;}
+        /* height与font-size之比大约为：1:0.893; zoom:1是为了触发IE的hasLayout */
+
+       /*利用line-height实现居中兼容IE7+/FF/Chrome,优点：不需要任何hack，兼容IE7+主流浏览器
+          缺点：此方法不兼容IE6，当然也可以用方法1中的font-size来兼容IE6*/
+        .img-wrap-2{ display:inline-block; width:200px; height:200px; line-height:200px; border:1px solid #ccc; text-align:center;}
+        .img-wrap-2 img{ vertical-align:middle;}
+
+        /*.利用button标签实现居中兼容IE6+/FF/Chrome,优点：不需要任何hack，兼容IE6+主流浏览器
+           缺点：添加了多余的标签button*/
+        .box-3{ display:inline-block; width:200px; height:200px; border:1px solid #ccc; text-align:center;}
+        .img-wrap-3 button{ width:100%; height:100%; border:0; background:none;}
+        .img-wrap-3 img{ cursor:pointer;}
+
+        /*利用1px小图片实现垂直居中兼容IE6+/FF/Chrome,优点：不需要任何hack，兼容IE6+主流浏览器
+         缺点：添加了多余的标签img*/
+        .box-4{ display:inline-block; width:200px; height:200px; border:1px solid #ccc; text-align:center;}
+        .blank{ width:0px; height:100%; vertical-align:middle;}
+    </style>
+</head>
+<body>
+<div class="box-1">
+    <a class="img-wrap-1" href="#">
+        <img src="1.jpg" alt="" />
+    </a>
+</div>
+
+<div class="box-2">
+    <a class="img-wrap-2" href="#">
+        <img src="2.jpg" alt="" />
+    </a>
+</div>
+
+<div class="box-3">
+    <a class="img-wrap-3" href="http://baidu.com/" target="_blank">
+        <button disabled="disabled"><img src="1.jpg" alt="" /></button>
+    </a>
+</div>
+
+<div class="box-4">
+    <img class="blank" src="images/blank.gif" alt="" />
+    <a class="img-wrap-4" href="#" target="_blank">
+        <img src="2.jpg" alt="" />
+    </a>
+</div>
+</body>
+</html>
+<!--优劣对比：
+
+1.利用table-cell实现居中，font-size做兼容兼容IE6+/FF/Chrome
+
+优点：不添加任何多余标签，兼容主流浏览器
+
+缺点：需要计算处理font-size
+
+2.利用line-height实现居中兼容IE7+/FF/Chrome
+
+优点：不需要任何hack，兼容IE7+主流浏览器
+
+缺点：此方法不兼容IE6，当然也可以用方法1中的font-size来兼容IE6
+
+3.利用button标签实现居中兼容IE6+/FF/Chrome
+
+优点：不需要任何hack，兼容IE6+主流浏览器
+
+缺点：添加了多余的标签button
+
+4.利用1px小图片实现垂直居中兼容IE6+/FF/Chrome
+
+优点：不需要任何hack，兼容IE6+主流浏览器
+
+缺点：添加了多余的标签img
+
+-->
